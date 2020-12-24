@@ -1,0 +1,27 @@
+name: Python Test
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+defaults:
+  run:
+    shell: bash
+    working-directory: python
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '2.7'
+    - name: Install dependencies
+      run: pip install coverage pytest mock
+    - name: Test with unittest
+      run: |
+        coverage run --source="./Tea" -m pytest tests/
+    - name: CodeCov
+      run: bash <(curl -s https://codecov.io/bash) -cF python

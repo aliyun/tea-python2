@@ -8,6 +8,7 @@ from urllib import urlencode
 from urlparse import urlparse
 from vendored.requests import Request, Session, status_codes
 
+from Tea.converter import TeaConverter
 from Tea.exceptions import TeaException, RequiredArgumentException
 from Tea.model import TeaModel
 from Tea.response import TeaResponse
@@ -45,7 +46,7 @@ class TeaCore(object):
 
     @staticmethod
     def compose_url(request):
-        host = request.headers.get('host')
+        host = TeaConverter.to_str(request.headers.get('host'))
         if not host:
             raise RequiredArgumentException('endpoint')
         else:
@@ -74,7 +75,7 @@ class TeaCore(object):
             for key in request.query:
                 value = request.query[key]
                 if value is not None:
-                    encode_query[key] = str(value)
+                    encode_query[key] = TeaConverter.to_str(value)
             url += urlencode(encode_query)
         return url.rstrip("?&")
 

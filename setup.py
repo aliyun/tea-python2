@@ -42,6 +42,7 @@ setup_args = {
     'license': "Apache License 2.0",
     'url': URL,
     'keywords': ["alibabacloud", "sdk", "tea"],
+    'package_data': {'Tea.vendored.requests.packages.certifi': ['cacert.pem']},
     'packages': find_packages(exclude=["tests*"]),
     'platforms': 'any',
     'classifiers': (

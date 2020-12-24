@@ -5,7 +5,10 @@ env:
   - PYTHONPATH=$PYTHONPATH:$TRAVIS_BUILD_DIR
 # command to install dependencies
 install:
-  - pip install coverage pytest mock
+  - python -m pip install --upgrade pip
+  - pip install coverage
+  - pip install pytest
+  - pip install mock
 # command to run tests
 script:
   - coverage run --source=Tea -m pytest tests/

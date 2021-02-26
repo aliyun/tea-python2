@@ -1,5 +1,13 @@
 # -*- coding: utf-8 -*-
-from _io import BytesIO
+from Tea.converter import py2
+if py2:
+    from _io import BytesIO
+else:
+    from _io import (
+        TextIOWrapper,
+        BufferedReader, BytesIO,
+        BufferedWriter
+    )
 
 
 class BaseStream(object):
@@ -19,6 +27,11 @@ class BaseStream(object):
         return self
 
 
-STREAM_CLASS = (file, BaseStream, BytesIO)
-READABLE = (BaseStream, file, BytesIO)
-WRITABLE = (file, )
+if py2:
+    STREAM_CLASS = (file, BaseStream, BytesIO)
+    READABLE = (BaseStream, file, BytesIO)
+    WRITABLE = (file, )
+else:
+    STREAM_CLASS = (TextIOWrapper, BufferedReader, BaseStream, BytesIO)
+    READABLE = (BaseStream, BufferedReader, BytesIO)
+    WRITABLE = (BufferedWriter,)

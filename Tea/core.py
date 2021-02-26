@@ -4,9 +4,12 @@ import logging
 import os
 import time
 
-from urllib import urlencode
-from urlparse import urlparse
-from vendored.requests import Request, Session, status_codes
+try:
+    from urllib import urlencode
+    from urlparse import urlparse
+except ImportError:
+    from urllib.parse import urlencode, urlparse
+from Tea.vendored.requests import Request, Session, status_codes
 
 from Tea.converter import TeaConverter
 from Tea.exceptions import TeaException, RequiredArgumentException

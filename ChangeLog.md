@@ -1,3 +1,6 @@
+### 2020-03-01 Version 0.0.3
+* Compatible version for python2/3.
+
 ### 2020-12-25 Version 0.0.2
 * Add cacert.pem
 

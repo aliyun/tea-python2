@@ -89,7 +89,8 @@ class TeaCore(object):
         runtime_option = runtime_option or {}
 
         verify = not runtime_option.get('ignoreSSL', False)
-
+        if verify:
+            verify = runtime_option.get('verify', True) if runtime_option.get('verify', True) is not None else True
         connect_timeout = runtime_option.get('connectTimeout')
         connect_timeout = connect_timeout if connect_timeout else DEFAULT_CONNECT_TIMEOUT
 

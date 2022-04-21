@@ -1,3 +1,6 @@
+### 2022-04-21 Version 0.0.4
+* Support certificates.
+
 ### 2020-03-01 Version 0.0.3
 * Compatible version for python2/3.
 

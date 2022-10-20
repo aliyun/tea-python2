@@ -1,3 +1,6 @@
+### 2022-10-20 Version 0.1.0
+* Return more detail in error info.
+
 ### 2022-04-21 Version 0.0.4
 * Support certificates.
 

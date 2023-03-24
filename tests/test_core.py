@@ -127,7 +127,7 @@ class TestCore(unittest.TestCase):
 
     def test_do_action(self):
         request = TeaRequest()
-        request.headers['host'] = "www.aliyun.com"
+        request.headers['host'] = "api.alibabacloud.com"
         request.pathname = "/s/zh"
         request.query["k"] = "ecs"
         option = {
@@ -167,9 +167,9 @@ class TestCore(unittest.TestCase):
         self.assertAlmostEqual("test", TeaCore.get_response_body(moc_resp))
 
     def test_allow_retry(self):
-        self.assertFalse(TeaCore.allow_retry(None, 0))
+        self.assertTrue(TeaCore.allow_retry(None, 0))
         dic = {}
-        self.assertFalse(TeaCore.allow_retry(dic, 0))
+        self.assertTrue(TeaCore.allow_retry(dic, 0))
         dic["maxAttempts"] = 3
         self.assertTrue(TeaCore.allow_retry(dic, 0))
         self.assertFalse(TeaCore.allow_retry(dic, 4))
